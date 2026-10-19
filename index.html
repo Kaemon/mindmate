@@ -240,16 +240,41 @@ section, .quiz-card{scroll-margin-top:84px}
 .badge{justify-self:start; font-size:13px; font-weight:700; padding:3px 10px; border-radius:99px; background:var(--accent-soft); color:var(--ink)}
 
 /* Sources */
-.sources{padding-block:48px; border-top:1px solid var(--line)}
+.sources{padding-block:48px 8px; border-top:1px solid var(--line)}
 .sources h2{font-size:20px; margin-bottom:12px}
 .sources ol{margin:0; padding-left:20px; display:grid; gap:6px; max-width:80ch; font-size:14px; color:var(--ink-soft)}
 
 .note{margin-top:16px; font-size:14px; color:var(--ink-soft)}
 
-body > footer{padding-block:40px; border-top:1px solid var(--line); font-size:14px; color:var(--ink-soft)}
-body > footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
-.foot-brand{display:flex; align-items:center; gap:10px}
-.foot-brand img{border-radius:50%; flex:none}
+/* Footer: a deep forest band in both themes */
+.site-foot{
+  --f-bg:#1D3128; --f-wave1:#4A6141; --f-wave2:#2C4335;
+  --f-ink:#EEF1E6; --f-soft:#B9C4AE; --f-faint:#8E9C86; --f-line:#33493C; --f-accent:#B8CC9A;
+  margin-top:24px; color:var(--f-soft); font-size:15px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .site-foot{--f-bg:#0C120D; --f-wave1:#2C3D2A; --f-wave2:#18221A; --f-line:#223024} }
+:root[data-theme="dark"] .site-foot{--f-bg:#0C120D; --f-wave1:#2C3D2A; --f-wave2:#18221A; --f-line:#223024}
+.foot-wave{display:block; width:100%; height:64px}
+.foot-wave .w1{fill:var(--f-wave1)}
+.foot-wave .w2{fill:var(--f-bg)}
+.foot-body{background:var(--f-bg); padding-block:40px 28px; margin-top:-1px}
+.foot-grid{display:grid; grid-template-columns:1.6fr 1fr 1.3fr 1fr; gap:40px}
+@media (max-width:900px){ .foot-grid{grid-template-columns:1fr 1fr} .foot-brand{grid-column:1 / -1} }
+@media (max-width:520px){ .foot-grid{gap:28px 20px} }
+@media (max-width:340px){ .foot-grid{grid-template-columns:1fr} }
+.foot-logo{display:inline-flex; align-items:center; gap:12px; text-decoration:none; color:var(--f-ink); font-family:var(--display); font-weight:800; font-size:26px; letter-spacing:-.01em}
+.foot-logo img{width:56px; height:56px; border-radius:50%; box-shadow:0 0 0 3px color-mix(in srgb, var(--f-accent) 35%, transparent)}
+.foot-logo .mate{color:var(--f-accent)}
+.foot-tag{margin-top:14px; font-family:var(--display); font-weight:500; font-size:19px; color:var(--f-ink)}
+.foot-desc{margin-top:8px; max-width:36ch; font-size:14px; color:var(--f-faint)}
+.foot-col{display:flex; flex-direction:column; gap:10px}
+.foot-col h2{font-family:var(--display); font-size:15px; font-weight:700; color:var(--f-ink); margin-bottom:4px}
+.foot-col a{color:var(--f-soft); text-decoration:none; width:fit-content; min-height:28px; display:inline-flex; align-items:center; background:linear-gradient(var(--f-accent),var(--f-accent)) 0 100% / 0 1px no-repeat; transition:color .15s, background-size .25s ease-out}
+.foot-col a:hover{color:var(--f-ink); background-size:100% 1px}
+.foot-col p{display:grid; gap:0; line-height:1.35; font-size:14px; color:var(--f-faint)}
+.foot-col .num{font-family:var(--display); font-weight:700; font-size:18px; color:var(--f-ink); font-variant-numeric:tabular-nums}
+.foot-bottom{display:flex; justify-content:space-between; gap:8px 24px; flex-wrap:wrap; margin-top:40px; padding-top:20px; border-top:1px solid var(--f-line); font-size:13px; color:var(--f-faint)}
+.site-foot :focus-visible{outline-color:var(--f-accent)}
 </style>
 </head>
 <body>
@@ -374,10 +399,43 @@ body > footer .wrap{display:flex; justify-content:space-between; align-items:cen
   </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <span class="foot-brand"><img src="assets/logo.png" alt="" width="36" height="36">MindMate is a student campaign by Group 1 for Project Management, Asia Pacific University.</span>
-    <span>This site gives general information and does not replace professional help.</span>
+<footer class="site-foot">
+  <svg class="foot-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path class="w1" d="M0 52 C 240 8, 420 8, 640 40 S 1080 86, 1440 26 L1440 80 L0 80 Z"/>
+    <path class="w2" d="M0 66 C 300 30, 520 44, 760 60 S 1180 74, 1440 46 L1440 80 L0 80 Z"/>
+  </svg>
+  <div class="foot-body">
+    <div class="wrap foot-grid">
+      <div class="foot-brand">
+        <a class="foot-logo" href="#top"><img src="assets/logo.png" alt="" width="56" height="56"><span>Mind<span class="mate">Mate</span></span></a>
+        <p class="foot-tag">A safer mind, a brighter you.</p>
+        <p class="foot-desc">A free stress and anxiety check-in for APU 3rd year students, with support matched to your result.</p>
+      </div>
+      <nav class="foot-col" aria-label="Footer">
+        <h2>Explore</h2>
+        <a href="#check">Take the check-in</a>
+        <a href="#help">Talk now</a>
+        <a href="#clinics">Book a counsellor</a>
+        <a href="#tips">Stress tips</a>
+        <a href="#sources">Sources</a>
+      </nav>
+      <div class="foot-col">
+        <h2>Urgent help</h2>
+        <p><span class="num">999</span>Emergency</p>
+        <p><span class="num">03-7627 2929</span>Befrienders KL, 24 hours</p>
+        <p><span class="num">15555</span>Talian HEAL, 8am to midnight</p>
+      </div>
+      <div class="foot-col">
+        <h2>About</h2>
+        <p>A student campaign by Group 1</p>
+        <p>Project Management</p>
+        <p>Asia Pacific University</p>
+      </div>
+    </div>
+    <div class="wrap foot-bottom">
+      <span>© 2026 MindMate</span>
+      <span>General information only. MindMate does not replace professional help.</span>
+    </div>
   </div>
 </footer>
 
