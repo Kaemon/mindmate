@@ -5,21 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MindMate</title>
 <meta name="description" content="MindMate: a free, anonymous stress and anxiety check for APU 3rd year students, with helplines, therapy clinics and reading picked for your result.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta property="og:image" content="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
 <style>
 :root{
   color-scheme: light;
-  --ground:#EEF2EF;
+  --ground:#F3F4EC;
   --surface:#FFFFFF;
-  --surface-2:#E3EAE5;
-  --ink:#15241F;
-  --ink-soft:#4A5B54;
-  --line:#CBD6CF;
-  --accent:#2E6B57;
+  --surface-2:#E6EADC;
+  --ink:#1D3128;
+  --ink-soft:#4C5A4C;
+  --line:#CFD6C2;
+  --accent:#4A6141;
   --accent-ink:#FFFFFF;
-  --accent-soft:#D5E7DE;
+  --accent-soft:#E0E8D3;
+  --sage:#7E9467;
   --glow:#E8B44C;
   --low:#3C8D5A;
   --mod:#C98A1B;
@@ -34,15 +38,15 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme: dark;
-    --ground:#101915; --surface:#18241F; --surface-2:#22302A; --ink:#E6EEE9; --ink-soft:#A3B4AC;
-    --line:#2F3F38; --accent:#6CC3A0; --accent-ink:#0E1A15; --accent-soft:#1F3A2F; --glow:#F0C466;
+    --ground:#131A14; --surface:#1B241C; --surface-2:#253026; --ink:#E9EEE3; --ink-soft:#AAB5A2;
+    --line:#334033; --accent:#A9C08C; --accent-ink:#141C13; --accent-soft:#283524; --sage:#A9C08C; --glow:#F0C466;
     --low:#6CC38A; --mod:#E6AA45; --high:#EF7B6E; --high-soft:#3A2220; --ph:#F3CF7A; --ph-bg:#3A3018;
   }
 }
 :root[data-theme="dark"]{
   color-scheme: dark;
-  --ground:#101915; --surface:#18241F; --surface-2:#22302A; --ink:#E6EEE9; --ink-soft:#A3B4AC;
-  --line:#2F3F38; --accent:#6CC3A0; --accent-ink:#0E1A15; --accent-soft:#1F3A2F; --glow:#F0C466;
+  --ground:#131A14; --surface:#1B241C; --surface-2:#253026; --ink:#E9EEE3; --ink-soft:#AAB5A2;
+  --line:#334033; --accent:#A9C08C; --accent-ink:#141C13; --accent-soft:#283524; --sage:#A9C08C; --glow:#F0C466;
   --low:#6CC38A; --mod:#E6AA45; --high:#EF7B6E; --high-soft:#3A2220; --ph:#F3CF7A; --ph-bg:#3A3018;
 }
 
@@ -67,7 +71,8 @@ a{color:var(--accent)}
 .nav{position:sticky; top:env(safe-area-inset-top,0px); z-index:10; background:color-mix(in srgb, var(--ground) 88%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:60px}
 .brand{font-family:var(--display); font-weight:800; font-size:21px; text-decoration:none; color:var(--ink); display:flex; align-items:center; gap:8px; letter-spacing:-.01em}
-.brand-dot{width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-soft)}
+.brand-logo{width:40px; height:40px; border-radius:50%; margin-right:2px}
+.brand .mate{color:var(--sage)}
 .nav-links{display:flex; gap:20px; align-items:center; flex-wrap:wrap}
 .nav-links a{color:var(--ink-soft); text-decoration:none; font-size:15px; min-height:44px; display:inline-flex; align-items:center}
 .nav-links a:hover{color:var(--ink)}
@@ -91,6 +96,9 @@ a{color:var(--accent)}
 /* Hero */
 .hero{padding-block:64px 56px}
 .hero-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px; align-items:center}
+.hero-brand{display:flex; align-items:center; gap:14px; margin-bottom:24px}
+.hero-brand img{width:96px; height:96px; border-radius:50%; box-shadow:0 6px 24px color-mix(in srgb, var(--accent) 22%, transparent)}
+.hero-brand p{font-family:var(--display); font-weight:500; font-size:18px; color:var(--accent)}
 .hero h1{font-size:clamp(40px,7vw,72px); font-weight:800; letter-spacing:-.02em}
 .hero .lede{font-size:19px; margin-top:20px}
 .hero-actions{display:flex; gap:12px; flex-wrap:wrap; margin-top:28px}
@@ -242,14 +250,16 @@ section, .quiz-card{scroll-margin-top:84px}
 .note{margin-top:16px; font-size:14px; color:var(--ink-soft)}
 
 body > footer{padding-block:40px; border-top:1px solid var(--line); font-size:14px; color:var(--ink-soft)}
-body > footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
+body > footer .wrap{display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap}
+.foot-brand{display:flex; align-items:center; gap:10px}
+.foot-brand img{border-radius:50%; flex:none}
 </style>
 </head>
 <body>
 
 <nav class="nav" aria-label="Main">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="brand-dot" aria-hidden="true"></span>MindMate</a>
+    <a class="brand" href="#top"><img class="brand-logo" src="assets/logo.png" alt="" width="40" height="40"><span>Mind<span class="mate">Mate</span></span></a>
     <div class="nav-links">
       <a href="#check">Check-in</a>
       <a href="#clinics">Counsellors</a>
@@ -262,6 +272,10 @@ body > footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
+        <div class="hero-brand">
+          <img src="assets/logo.png" alt="MindMate logo" width="96" height="96">
+          <p>A safer mind, a brighter you.</p>
+        </div>
         <h1>Third year is a lot. Check in with yourself.</h1>
         <p class="lede">MindMate is for APU 3rd year students. FYP, internships, group assignments and figuring out what comes after graduation, often all in the same week. Take a few minutes to see how you're really doing, and get support matched to your result.</p>
         <div class="hero-actions">
@@ -369,7 +383,7 @@ body > footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-
 
 <footer>
   <div class="wrap">
-    <span>MindMate is a student campaign by Group 1 for Project Management, Asia Pacific University.</span>
+    <span class="foot-brand"><img src="assets/logo.png" alt="" width="36" height="36">MindMate is a student campaign by Group 1 for Project Management, Asia Pacific University.</span>
     <span>This site gives general information and does not replace professional help.</span>
   </div>
 </footer>
